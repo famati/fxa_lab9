@@ -13,10 +13,10 @@ def decode_password(encoded_password):
     decode = []
     new_num = 0
     for digit in range(0, len(encoded_password)):
-        if int(encoded_password[digit]) <= 2:
+        if int(encoded_password[digit]) <= 2: # if num less than 2 adds back 10 to get ori. digit
            new_num = (10 + int(encoded_password[digit])) - 3
         else:
-           new_num = (int(encoded_password[digit]) - 3)
+           new_num = (int(encoded_password[digit]) - 3) # otherwise just sub 3
         decode.append(str(new_num))
     return "".join(decode)
 
