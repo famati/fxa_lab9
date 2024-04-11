@@ -10,12 +10,15 @@ def encode_password(password):
 
 
 def decode_password(encoded_password):
-    constant_value = 3  # Making sure each digit gets shifted down by 3 numbers
-    original_password = []  # Creating empty list to store original password
-    for digit in encoded_password:
-        original_digit = str((int(digit) - constant_value + 10) % 10)  # Subtract 3 from each digit
-        original_password.append(original_digit)
-    return ''.join(original_password)  # returning the original password
+    decode = []
+    new_num = 0
+    for digit in range(0, len(encoded_password)):
+        if int(encoded_password[digit]) <= 2:
+           new_num = (10 + int(encoded_password[digit])) - 3
+        else:
+           new_num = (int(encoded_password[digit]) - 3)
+        decode.append(str(new_num))
+    return "".join(decode)
 
 
 def mainmenu():
@@ -33,11 +36,11 @@ def mainmenu():
 
         if opt == '1':  # If user selects opt 1, encode the original password
             original_password = input("Please enter your password to encode: ")
-            encoded_password = encode_password(original_password)
+            encoded_pwd = encode_password(original_password)
             print("Your password has been encoded and stored!")
         elif opt == '2':  # If user selects opt 2, decode the encoded password
-            if encoded_password is not None and original_password is not None:
-                print(f"The encoded password is {encoded_password}, and the original password is {original_password}.")
+            original_pwd = decode_password(encoded_pwd)
+            print(f"The encoded password is {encoded_pwd}, and the original password is {original_pwd}.")
         elif opt == '3':
             break
 
